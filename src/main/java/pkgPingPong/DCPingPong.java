@@ -86,6 +86,7 @@ public class DCPingPong {
         if (LiveArray[prev_row][col] == 1) count++;
         if (LiveArray[next_row][col] == 1) count++;
 
+
         setNextArray(row, col, count);
 
 
@@ -109,7 +110,22 @@ public class DCPingPong {
         if (LiveArray[next_row][prev_col] == 1) count++;
         if (LiveArray[next_row][next_col] == 1) count++;
 
-        setNextArray(row, col, count);
+        if (LiveArray[row][col] == 1){
+            if (count < 2){
+                setNextArray(row,col,0);
+            }else if (count == 2 || count == 3){
+                setNextArray(row, col, 1);
+            }else {
+                setNextArray(row,col,0);
+            }
+        }else {
+            if (count == 2){
+                setNextArray(row, col, 1);
+            }else{
+                setNextArray(row,col,0);
+            }
+        }
+       // setNextArray(row, col, count);
     }
 
     public void boardReset(int lowerBoundRandValue, int upperBoundRandValue){

@@ -3,6 +3,11 @@ package pkgSlRenderer;
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
+import java.util.Random;
+import org.lwjgl.opengl.*;
+import pkgPingPong.DCPingPong;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class DCPolygonRenderer extends slRenderEngine{
 
@@ -57,6 +62,73 @@ public class DCPolygonRenderer extends slRenderEngine{
         } // while (!my_wm.isGlfwWindowClosed())
         my_wm.destroyGlfwWindow();
     } // public void render(...)
+
+    public void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS, int NUM_SIDES, DCPingPong myPingPong){
+        C_RADIUS = radiusFinder(NUM_ROWS, NUM_COLS);
+        MAX_POLYGONS = numPolygons(NUM_ROWS, NUM_COLS);
+        NUMBER_OF_SIDES = NUM_SIDES;
+
+        float spacingX = 2.0f / NUM_COLS;
+        float spacingY = 2.0f / NUM_ROWS;
+
+        C_RADIUS = Math.min(spacingX, spacingY) / 2.0f;
+
+
+        initializeArrays();
+        findCenterCoords(NUM_COLS);
+
+        while (!my_wm.isGlfwWindowClosed()) {
+            updateRandVerticesRandColors();
+
+            glfwPollEvents();
+
+            glClear(GL_COLOR_BUFFER_BIT);
+
+            if (FRAME_DELAY != 0){
+                Delay(FRAME_DELAY);
+            }
+
+            // Loop through rows and columns to draw each square
+            for (int row = 0; row < NUM_ROWS; row++) {
+                for (int col = 0; col < NUM_COLS; col++) {
+                    float x = -1.0f + col * spacingX + spacingX / 2;
+                    float y = 1.0f - row * spacingY - spacingY / 2;
+                    boolean alive;
+                    myPingPong.nextNearestNeighbor(row, col);
+                    if (myPingPong.get(row, col) == 1){
+                        alive = true;
+                    }else{
+                        alive = false;
+                    }
+                    drawSquare(x, y, C_RADIUS, alive);
+                }
+            }
+            myPingPong.swapBuffer();
+            my_wm.swapBuffers();
+        } // while (!my_wm.isGlfwWindowClosed())
+        my_wm.destroyGlfwWindow();
+    }
+
+    private void drawSquare(float x, float y, float size, boolean alive) {
+        glBegin(GL_TRIANGLES);
+        if (alive){
+            glColor3f(0.0f, 1.0f, 0.0f);
+        }else{
+            glColor3f(1.0f, 0.0f, 0.0f);
+        }
+          // Set color to green
+
+        // Draw the first triangle
+        glVertex2f(x - size / 2, y + size / 2);   // Top-left
+        glVertex2f(x + size / 2, y + size / 2);   // Top-right
+        glVertex2f(x - size / 2, y - size / 2);   // Bottom-left
+
+        // Draw the second triangle
+        glVertex2f(x + size / 2, y + size / 2);   // Top-right
+        glVertex2f(x + size / 2, y - size / 2);   // Bottom-right
+        glVertex2f(x - size / 2, y - size / 2);   // Bottom-left
+        glEnd();
+    }
 
     // Initializes the arrays for random colors, and the coordinates
     private void initializeArrays(){

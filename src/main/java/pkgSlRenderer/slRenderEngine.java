@@ -1,5 +1,6 @@
 package pkgSlRenderer;
 
+import pkgPingPong.DCPingPong;
 import pkgSlUtils.slWindowManager;
 import java.util.Random;
 import org.lwjgl.opengl.*;
@@ -24,8 +25,9 @@ public abstract class slRenderEngine {
     public abstract void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS);
     public abstract void render(float RADIUS);
     public abstract void render();
+    public abstract void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS, int NUM_SIDES, DCPingPong myPingPong);
 
-    public void initOpenGL(slWindowManager my_wm){
+        public void initOpenGL(slWindowManager my_wm){
         my_wm.updateContextToThis();
 
         GL.createCapabilities();
