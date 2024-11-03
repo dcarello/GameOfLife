@@ -23,7 +23,6 @@ public class DCPingPong {
     // Binary Array Initialization
     public DCPingPong(int rows, int cols){
         VariableInit(rows, cols);
-
         RandomArrayInit(LiveArray, 0, 1);
     }
 
@@ -55,7 +54,7 @@ public class DCPingPong {
         }
     }
 
-    public void setLiveArray(int row, int col, int valueToWrite){
+    private void setLiveArray(int row, int col, int valueToWrite){
         LiveArray[row][col] = valueToWrite;
     }
 
@@ -119,7 +118,7 @@ public class DCPingPong {
                 setNextArray(row,col,0);
             }
         }else {
-            if (count == 2){
+            if (count == 3){
                 setNextArray(row, col, 1);
             }else{
                 setNextArray(row,col,0);

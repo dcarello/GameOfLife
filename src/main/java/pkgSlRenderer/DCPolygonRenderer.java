@@ -63,16 +63,12 @@ public class DCPolygonRenderer extends slRenderEngine{
         my_wm.destroyGlfwWindow();
     } // public void render(...)
 
-    public void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS, int NUM_SIDES, DCPingPong myPingPong){
-        C_RADIUS = radiusFinder(NUM_ROWS, NUM_COLS);
+    public void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS, DCPingPong myPingPong){
+        C_RADIUS = radiusFinder(NUM_ROWS, NUM_COLS) * 1.7f;
         MAX_POLYGONS = numPolygons(NUM_ROWS, NUM_COLS);
-        NUMBER_OF_SIDES = NUM_SIDES;
 
         float spacingX = 2.0f / NUM_COLS;
         float spacingY = 2.0f / NUM_ROWS;
-
-        C_RADIUS = Math.min(spacingX, spacingY) / 2.0f;
-
 
         initializeArrays();
         findCenterCoords(NUM_COLS);
@@ -93,13 +89,10 @@ public class DCPolygonRenderer extends slRenderEngine{
                 for (int col = 0; col < NUM_COLS; col++) {
                     float x = -1.0f + col * spacingX + spacingX / 2;
                     float y = 1.0f - row * spacingY - spacingY / 2;
+
                     boolean alive;
                     myPingPong.nextNearestNeighbor(row, col);
-                    if (myPingPong.get(row, col) == 1){
-                        alive = true;
-                    }else{
-                        alive = false;
-                    }
+                    alive = myPingPong.get(row, col) == 1;
                     drawSquare(x, y, C_RADIUS, alive);
                 }
             }
@@ -112,11 +105,10 @@ public class DCPolygonRenderer extends slRenderEngine{
     private void drawSquare(float x, float y, float size, boolean alive) {
         glBegin(GL_TRIANGLES);
         if (alive){
-            glColor3f(0.0f, 1.0f, 0.0f);
+            glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
         }else{
-            glColor3f(1.0f, 0.0f, 0.0f);
+            glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
         }
-          // Set color to green
 
         // Draw the first triangle
         glVertex2f(x - size / 2, y + size / 2);   // Top-left

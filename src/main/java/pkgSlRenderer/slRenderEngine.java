@@ -25,7 +25,7 @@ public abstract class slRenderEngine {
     public abstract void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS);
     public abstract void render(float RADIUS);
     public abstract void render();
-    public abstract void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS, int NUM_SIDES, DCPingPong myPingPong);
+    public abstract void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS, DCPingPong myPingPong);
 
         public void initOpenGL(slWindowManager my_wm){
         my_wm.updateContextToThis();
