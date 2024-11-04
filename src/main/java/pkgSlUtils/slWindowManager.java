@@ -1,6 +1,8 @@
 package pkgSlUtils;
 
 import org.lwjgl.glfw.GLFWFramebufferSizeCallback;
+import pkgKeyListener.DCKeyListener;
+
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.glViewport;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -66,9 +68,14 @@ public class slWindowManager {
                 }
             };
 
-
     public void enableResizeWindowCallback() {
         glfwSetFramebufferSizeCallback(glfw_win, resizeWindow);
     } // public void enableResizeWindowCallback(...)
+
+    public void setKeyCallback(){
+        glfwSetKeyCallback(glfw_win, DCKeyListener::keyCallback);
+    }
+
+
 
 }

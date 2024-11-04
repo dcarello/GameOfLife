@@ -28,14 +28,16 @@ public abstract class slRenderEngine {
     public abstract void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS, DCPingPong myPingPong);
 
         public void initOpenGL(slWindowManager my_wm){
-        my_wm.updateContextToThis();
+            my_wm.setKeyCallback();
 
-        GL.createCapabilities();
+            my_wm.updateContextToThis();
 
-        my_wm.enableResizeWindowCallback();
+            GL.createCapabilities();
 
-        float CC_RED = 0.0f, CC_GREEN = 0.0f, CC_BLUE = 1.0f, CC_ALPHA = 1.0f;
-        glClearColor(CC_RED, CC_GREEN, CC_BLUE, CC_ALPHA);
+            my_wm.enableResizeWindowCallback();
+
+            float CC_RED = 0.0f, CC_GREEN = 0.0f, CC_BLUE = 1.0f, CC_ALPHA = 1.0f;
+            glClearColor(CC_RED, CC_GREEN, CC_BLUE, CC_ALPHA);
     }
 
     protected void updateRandVerticesRandColors(){

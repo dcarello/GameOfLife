@@ -1,10 +1,11 @@
 package pkgSlRenderer;
 
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
 import java.util.Random;
 import org.lwjgl.opengl.*;
+import pkgKeyListener.DCKeyListener;
 import pkgPingPong.DCPingPong;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -77,6 +78,25 @@ public class DCPolygonRenderer extends slRenderEngine{
             updateRandVerticesRandColors();
 
             glfwPollEvents();
+
+            if (DCKeyListener.isKeyPressed(GLFW_KEY_I) ) {
+                FRAME_DELAY += 500;
+                System.out.println("+++ Frame delay is now: " + FRAME_DELAY + " ms!");
+                DCKeyListener.resetKeypressEvent(GLFW_KEY_I);
+            }
+
+            if (DCKeyListener.isKeyPressed(GLFW_KEY_D) && FRAME_DELAY > 0 ) {
+                if (FRAME_DELAY < 500){
+                    FRAME_DELAY = 0;
+                    System.out.println("--- Frame delay is now: " + FRAME_DELAY + " ms!");
+                    DCKeyListener.resetKeypressEvent(GLFW_KEY_D);
+                }else{
+                    FRAME_DELAY -= 500;
+                    System.out.println("--- Frame delay is now: " + FRAME_DELAY + " ms!");
+                    DCKeyListener.resetKeypressEvent(GLFW_KEY_D);
+                }
+
+            }
 
             glClear(GL_COLOR_BUFFER_BIT);
 
