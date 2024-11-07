@@ -85,7 +85,7 @@ public class DCPolygonRenderer extends slRenderEngine{
                 DCKeyListener.resetKeypressEvent(GLFW_KEY_I);
             }
 
-            if (DCKeyListener.isKeyPressed(GLFW_KEY_D) && FRAME_DELAY > 0 ) {
+            if (DCKeyListener.isKeyPressed(GLFW_KEY_D)) {
                 if (FRAME_DELAY < 500){
                     FRAME_DELAY = 0;
                     System.out.println("--- Frame delay is now: " + FRAME_DELAY + " ms!");
@@ -95,6 +95,11 @@ public class DCPolygonRenderer extends slRenderEngine{
                     System.out.println("--- Frame delay is now: " + FRAME_DELAY + " ms!");
                     DCKeyListener.resetKeypressEvent(GLFW_KEY_D);
                 }
+
+            }
+            if (DCKeyListener.isKeyPressed(GLFW_KEY_R)){
+                myPingPong.boardReset();
+                DCKeyListener.resetKeypressEvent(GLFW_KEY_R);
 
             }
 

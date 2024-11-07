@@ -46,8 +46,11 @@ public class DCKeyListener {
     public static void keyCallback(long my_window, int key, int scancode, int action, int modifier_key) {
         if (action == GLFW_PRESS) {
             get().keyPressed[key] = true;
-        } else if (action == GLFW_RELEASE){
-            get().keyPressed[key] = false;
+            System.out.println("Key Pressed [" + key + "]");
         }
+//        else if (action == GLFW_RELEASE){
+//            get().keyPressed[key] = false;
+//            System.out.println("Key Released");
+//        }
     }
 }
