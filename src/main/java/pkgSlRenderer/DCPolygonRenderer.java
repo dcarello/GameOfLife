@@ -15,6 +15,39 @@ public class DCPolygonRenderer extends slRenderEngine{
     private float[][] center_coords;
     private int NUM_ROWS;
     private int NUM_COLS;
+    private int FRAME_DELAY;
+
+    // Thread to handle Interactive controls
+    private void startInteractiveThread(DCPingPong myPingPong){
+        Thread InteractiveThread = new Thread(() ->{
+            while (!my_wm.isGlfwWindowClosed()) {
+                if (DCKeyListener.isKeyPressed(GLFW_KEY_I) ) {
+                    FRAME_DELAY += 500;
+                    System.out.println("+++ Frame delay is now: " + FRAME_DELAY + " ms!");
+                    DCKeyListener.resetKeypressEvent(GLFW_KEY_I);
+                }
+
+                if (DCKeyListener.isKeyPressed(GLFW_KEY_D)) {
+                    if (FRAME_DELAY < 500){
+                        FRAME_DELAY = 0;
+                        System.out.println("--- Frame delay is now: " + FRAME_DELAY + " ms!");
+                        DCKeyListener.resetKeypressEvent(GLFW_KEY_D);
+                    }else{
+                        FRAME_DELAY -= 500;
+                        System.out.println("--- Frame delay is now: " + FRAME_DELAY + " ms!");
+                        DCKeyListener.resetKeypressEvent(GLFW_KEY_D);
+                    }
+
+                }
+                if (DCKeyListener.isKeyPressed(GLFW_KEY_R)){
+                    myPingPong.boardReset();
+                    DCKeyListener.resetKeypressEvent(GLFW_KEY_R);
+
+                }
+            }
+        });
+        InteractiveThread.start();
+    }
 
 
     // First overload given frame delay, num rows, num cols calculates radius to render the polygons
@@ -64,9 +97,10 @@ public class DCPolygonRenderer extends slRenderEngine{
         my_wm.destroyGlfwWindow();
     } // public void render(...)
 
-    public void render(int FRAME_DELAY, int NUM_ROWS, int NUM_COLS, DCPingPong myPingPong){
+    public void render(int FRAME_DELAY_INPUT, int NUM_ROWS, int NUM_COLS, DCPingPong myPingPong){
         C_RADIUS = radiusFinder(NUM_ROWS, NUM_COLS) * 1.7f;
         MAX_POLYGONS = numPolygons(NUM_ROWS, NUM_COLS);
+        FRAME_DELAY = FRAME_DELAY_INPUT;
 
         float spacingX = 2.0f / NUM_COLS;
         float spacingY = 2.0f / NUM_ROWS;
@@ -74,34 +108,12 @@ public class DCPolygonRenderer extends slRenderEngine{
         initializeArrays();
         findCenterCoords(NUM_COLS);
 
+        startInteractiveThread(myPingPong);
+
         while (!my_wm.isGlfwWindowClosed()) {
             updateRandVerticesRandColors();
 
             glfwPollEvents();
-
-            if (DCKeyListener.isKeyPressed(GLFW_KEY_I) ) {
-                FRAME_DELAY += 500;
-                System.out.println("+++ Frame delay is now: " + FRAME_DELAY + " ms!");
-                DCKeyListener.resetKeypressEvent(GLFW_KEY_I);
-            }
-
-            if (DCKeyListener.isKeyPressed(GLFW_KEY_D)) {
-                if (FRAME_DELAY < 500){
-                    FRAME_DELAY = 0;
-                    System.out.println("--- Frame delay is now: " + FRAME_DELAY + " ms!");
-                    DCKeyListener.resetKeypressEvent(GLFW_KEY_D);
-                }else{
-                    FRAME_DELAY -= 500;
-                    System.out.println("--- Frame delay is now: " + FRAME_DELAY + " ms!");
-                    DCKeyListener.resetKeypressEvent(GLFW_KEY_D);
-                }
-
-            }
-            if (DCKeyListener.isKeyPressed(GLFW_KEY_R)){
-                myPingPong.boardReset();
-                DCKeyListener.resetKeypressEvent(GLFW_KEY_R);
-
-            }
 
             glClear(GL_COLOR_BUFFER_BIT);
 

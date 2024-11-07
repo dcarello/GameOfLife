@@ -13,11 +13,10 @@ public class csc133Driver {
         slWindowManager.get().initGLFWWindow(WIN_WIDTH, WIN_HEIGHT, "CSUS CSC133");
         my_re.initOpenGL(slWindowManager.get());
 
-        final int FRAME_DELAY = 700, NUM_ROWS = 16, NUM_COLS = 16;
+        final int FRAME_DELAY = 500, NUM_ROWS = 100, NUM_COLS = 100;
         final float RADIUS = 0.5f;
 
         DCPingPong myPingPong = new DCPingPong(NUM_ROWS, NUM_COLS);
-        myPingPong.printLiveArray();
 
         my_re.render(FRAME_DELAY, NUM_ROWS, NUM_COLS, myPingPong);
 //        my_re.render(RADIUS);

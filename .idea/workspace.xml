@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58e820c3-b5d8-485e-9217-8d77e81b1d0e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/pkgDriver/csc133Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pkgDriver/csc133Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pkgKeyListener/DCKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pkgKeyListener/DCKeyListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pkgSlRenderer/DCPolygonRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pkgSlRenderer/DCPolygonRenderer.java" afterDir="false" />
     </list>
@@ -28,9 +29,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2oJiHzlwyKyWtX8pzGMRUCVt6JW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -39,20 +40,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.GameOfLife.executor": "Run",
-    "Gradle.Build GameOfLife.executor": "Run",
-    "Gradle.GameOfLife [:CSC133.Main.main()].executor": "Run",
-    "Gradle.GameOfLife [:pkgDriver.csc133Driver.main()].executor": "Run",
-    "Gradle.GameOfLife.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Assignment6",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/daniel/Dev/School/Sac_State/csc133/GameOfLife/src/main/java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.GameOfLife.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build GameOfLife.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GameOfLife [:CSC133.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GameOfLife [:pkgDriver.csc133Driver.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GameOfLife.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Assignment6&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/daniel/Dev/School/Sac_State/csc133/GameOfLife/src/main/java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
